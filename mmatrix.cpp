@@ -170,11 +170,13 @@ mmatrix* mmatrix::inverse()
 	auto D = *E + (*C)*(-1);
 	auto X = E;
 	auto new_X = *((*D) * (X)) + E;
+	int iterations = 0, iterations_limit = 5000;
 
-	while ((*X + (*new_X)*(-1))->norm() >= 0.001)
+	while ((*X + (*new_X)*(-1))->norm() >= 0.0000001 && iterations<=iterations_limit+1)
 	{
 		X = new_X;
 		new_X = *((*D) * (X)) + E;
+		iterations++;
 	}
 
 	return *((*new_X) * this->transond()) * (1/r);

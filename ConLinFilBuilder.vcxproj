@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackforwardLinearFilter.cpp" />
     <ClCompile Include="ConLinFilBuilder.cpp" />
     <ClCompile Include="LinearFilter.cpp" />
     <ClCompile Include="mexception.cpp" />
@@ -149,6 +150,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BackforwardLinearFilter.h" />
     <ClInclude Include="LinearFilter.h" />
     <ClInclude Include="mexception.h" />
     <ClInclude Include="mmatrix.h" />

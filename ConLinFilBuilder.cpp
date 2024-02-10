@@ -4,6 +4,7 @@
 
 #include "mmatrix.h"
 #include "LinearFilter.h"
+#include "BackforwardLinearFilter.h"
 #include "mexception.h"
 
 using namespace std;
@@ -31,15 +32,24 @@ int main()
         try
         {
             LinearFilter filter(n, k, data);
+            BackforwardLinearFilter back_filter(n, k, data);
             auto filterPackage = filter.getFilterData();
+            auto backFilterPackage = back_filter.getFilterData();
 
-            cout << "Result:" << endl;
+            cout << "Result" << endl << "Forward linear filter:" << endl;
             cout << "x[i]=";
             for (i = 0; i < filterPackage.ElementsNumber; ++i)
             {
-                cout << *(filterPackage.elements + i) << "*x[i-" << i + 1 << "] " << (i < filterPackage.ElementsNumber) ? "+" : "";
+                cout << *(filterPackage.elements + i) << "*x[i-" << i + 1 << "] " << "+";
             }
-            cout << endl << endl;
+            cout << "0\nBackforward linear filter:" << endl;
+            cout << "x[i-" << k << "]=";
+            for (i = 0; i < backFilterPackage.ElementsNumber; ++i)
+            {
+                cout << *(backFilterPackage.elements + i) << "*x[i-" << k - i - 1 << "] " << "+";
+            }
+
+            cout << 0 << endl << endl;
         }
         catch (const basic_mexception ex)
         {
